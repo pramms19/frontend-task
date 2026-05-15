@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const cards = [
   {
-    bg: "bg-[#E85555]",
+    bg: "bg-[#F45B5B]",
     title: "Start with Clarity",
     subtitle: "Step into a better learning path.",
     body: "Overwhelmed by too many learning options? SkillShikshya provides a clear, curated roadmap from the start. Whether you're a beginner or upskilling, we have a path tailored to your growth.",
@@ -13,7 +13,7 @@ const cards = [
     imageSide: "left" as const,
   },
   {
-    bg: "bg-[#2D9CDB]",
+    bg: "bg-[#5492A0]",
     title: "Learn by Doing",
     subtitle: "Practical skills, real projects.",
     body: "Theory is great, but action is better. At SkillShikshya, you learn by doing. Hands-on projects and real-world scenarios help you build, break, and create—leading to true mastery.",
@@ -22,7 +22,7 @@ const cards = [
     imageSide: "right" as const,
   },
   {
-    bg: "bg-[#7B5EA7]",
+    bg: "bg-[#6C64A8]",
     title: "Get Mentored & Supported",
     subtitle: "You're not learning alone.",
     body: "Stuck or need feedback? SkillShikshya's community of mentors and learners has your back with live support, interactive discussions, and expert insights. You're never on your own.",
@@ -31,7 +31,7 @@ const cards = [
     imageSide: "left" as const,
   },
   {
-    bg: "bg-[#A0856C]",
+    bg: "bg-[#A88964]",
     title: "Achieve & Showcase",
     subtitle: "Build your portfolio, get job-ready.",
     body: "Your journey ends with achievement. Each completed project builds a portfolio showcasing your skills and job readiness, bringing you closer to that dream job, promotion, or your own venture.",
@@ -65,7 +65,13 @@ function StepCard({
       {/* Left-side image */}
       {imageSide === "left" && (
         <div className="absolute w-70 h-70 -left-20 top-7 shrink-0">
-          <Image src={image} alt={imageAlt} fill className="object-contain" />
+          <Image
+            src={image}
+            alt={imageAlt}
+            fill
+            sizes="w-70 h-70"
+            className="object-contain"
+          />
         </div>
       )}
 
@@ -93,7 +99,13 @@ function StepCard({
       {/* Right-side image */}
       {imageSide === "right" && (
         <div className="absolute w-70 h-70 -right-16 top-8 shrink-0">
-          <Image src={image} alt={imageAlt} fill className="object-contain" />
+          <Image
+            src={image}
+            alt={imageAlt}
+            fill
+            sizes="w-70 h-70"
+            className="object-contain"
+          />
         </div>
       )}
     </div>
@@ -102,7 +114,7 @@ function StepCard({
 
 export default function StepCards() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+    <div className="min-h-screen flex items-center justify-center p-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8 max-w-4xl w-full">
         {cards.map((card, i) => (
           <StepCard key={i} {...card} />
