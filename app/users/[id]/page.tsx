@@ -2,16 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { Post, User } from "@/types";
+import { User } from "@/types";
+import { usePostsStore } from "@/store/postsStore";
 import PostCard from "@/components/PostCard";
+import PostForm from "@/components/PostForm";
 
 export default function UserPostsPage() {
   const { id } = useParams();
   const router = useRouter();
   const userId = Number(id);
 
+  const { setPosts, getPostsForUser } = usePostsStore();
+
   const [user, setUser] = useState<User | null>(null);
-  const [posts, setPosts] = useState<Post[]>([]);
   const [apiIsLoading, setApiIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -20,7 +23,6 @@ export default function UserPostsPage() {
       try {
         setApiIsLoading(true);
 
-        // Fetch user and posts in parallel
         const [userRes, postsRes] = await Promise.all([
           fetch(`https://jsonplaceholder.typicode.com/users/${userId}`),
           fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`),
@@ -34,7 +36,7 @@ export default function UserPostsPage() {
         ]);
 
         setUser(userData);
-        setPosts(postsData);
+        setPosts(postsData); // store API posts in Zustand
       } catch {
         setError(true);
       } finally {
@@ -43,7 +45,10 @@ export default function UserPostsPage() {
     };
 
     fetchData();
-  }, [userId]);
+  }, [userId, setPosts]);
+
+  // get merged API + local posts for this user
+  const allPosts = getPostsForUser(userId);
 
   if (apiIsLoading) {
     return <p className="p-6 text-gray-500 text-sm">Loading users...</p>;
@@ -72,16 +77,22 @@ export default function UserPostsPage() {
         </div>
       )}
 
-      {/* Posts */}
+      {/* Posts list */}
       <h2 className="font-semibold text-gray-700 mb-3">
-        Posts ({posts.length})
+        Posts ({allPosts.length})
       </h2>
 
       <div className="flex flex-col gap-3">
-        {posts.map((post) => (
-          <PostCard key={post.id} post={post} />
+        {allPosts.map((post) => (
+          <PostCard
+            key={`${post.isLocal ? "local" : "api"}-${post.id}`}
+            post={post}
+          />
         ))}
       </div>
+
+      {/* Add new post form */}
+      <PostForm userId={userId} />
     </div>
   );
 }
