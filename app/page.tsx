@@ -1,10 +1,9 @@
-import NavTab from "@/components/NavTab";
 import StepCards from "@/components/StepCards";
 
 export default function Home() {
   return (
-    <div className="bg-gray-100">
-      <NavTab />
+    <div>
+      
       <div className="w-full max-w-4xl mx-auto px-6">
         <p className="text-gray-500 text-sm mb-1">Your SkillShikshya Journey</p>
         <h2 className="text-gray-900 font-bold text-2xl mb-6">

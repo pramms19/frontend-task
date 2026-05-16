@@ -1,10 +1,8 @@
 import Courses from "@/components/Courses";
-import NavTab from "@/components/NavTab";
 
 export default function Design2() {
   return (
     <div>
-      <NavTab />
       <div className="w-full max-w-4xl mx-auto px-6">
         <p className="text-gray-500 text-sm mb-1">
           Explore our classes and master trending skills!

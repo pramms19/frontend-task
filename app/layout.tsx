@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Poppins, Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
+import NavTab from "@/components/NavTab";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-background antialiased">
+        <NavTab />
         <main>{children}</main>
       </body>
     </html>
