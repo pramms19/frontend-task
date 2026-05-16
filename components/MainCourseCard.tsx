@@ -10,7 +10,7 @@ const techIcons = [
 
 export default function MainCourseCard() {
   return (
-    <div className="bg-[#C33241] rounded-2xl flex flex-col justify-between p-8 flex-2 min-w-0 min-h-70">
+    <div className="bg-[#C33241] rounded-2xl flex flex-col justify-between p-8 flex-2 min-w-0 min-h-70 h-full">
       {/* Top row */}
       <div className="flex justify-end">
         <Link

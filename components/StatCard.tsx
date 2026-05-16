@@ -16,7 +16,7 @@ export default function StatCard({
   };
 
   return (
-    <div className="bg-[#FAE8E8] rounded-2xl flex flex-col justify-between p-5 flex-1 min-w-0 min-h-70 place-content-center place-items-center">
+    <div className="bg-[#FAE8E8] rounded-2xl flex flex-col justify-between p-5 flex-1 min-w-0 min-h-70 h-full place-content-center place-items-center">
       <div className="flex flex-row gap-2 items-end h-full flex-1">
         <p
           className="text-[#C33241] font-bold text-xl leading-tight shrink-0 max-h-30"
