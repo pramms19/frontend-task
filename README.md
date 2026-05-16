@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend Task
+
+This is a frontend project built with **Next.js**, **TypeScript**, and **Tailwind CSS**, consisting of two tasks:
+
+- **Task 1** — UI replication from Figma
+- **Task 2** — User & Posts Dashboard using a public API
+
+---
+
+## Tech Stack
+
+| Tool                    | Purpose          |
+| ----------------------- | ---------------- |
+| Next.js 14 (App Router) | Framework        |
+| TypeScript              | Type safety      |
+| Tailwind CSS            | Styling          |
+| Zustand                 | State management |
+| Zod                     | Form validation  |
+| Framer Motion           | Animations       |
+| shadcn/ui               | UI components    |
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/pramms19/frontend-task.git
+cd frontend-task
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Task 1 — UI Development from Figma
 
-## Learn More
+### Design 1
 
-To learn more about Next.js, take a look at the following resources:
+- Character illustrations overlapping card edges
+- Cards 1 & 2 have a **hover reveal** — slides in from right on hover
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Design 2
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Courses section with a large main card + 2 stat cards
+- Cards are **swappable** — click a stat card to swap it into the main slot
+- Swap animation powered by **Framer Motion** `layout`
+- State managed by **Zustand** (`coursesStore`)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Task 2 — User & Posts Dashboard
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### User List Page
+
+- Users fetched server-side via **SSR** (Next.js Server Components)
+- Displays name, email, company name, and "View Posts" button
+- **Instant search** filters by name or email (client-side, no API call)
+- Loading and error states handled
+
+### User Posts Page
+
+- Dynamic route — works for any user ID
+- Fetches user info + posts in **parallel** with `Promise.all`
+- Merges API posts with locally added posts
+- **Add New Post** form with Zod validation
+- Local posts saved to **localStorage** and shown with "Added by you" badge
+- Loading and error states handled
+
+---
+
+## Author
+
+Pramada Shrestha
+[https://github.com/pramms19](https://github.com/pramms19)
